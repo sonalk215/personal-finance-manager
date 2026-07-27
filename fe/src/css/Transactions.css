@@ -1,0 +1,219 @@
+/* Main Container */
+
+.transactions-container {
+  padding: 30px 40px;
+  min-height: calc(100vh - 100px);
+  background: #f8fafc;
+}
+
+/* Header */
+
+.transactions-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 30px;
+}
+
+.transactions-header h1 {
+  font-size: 32px;
+
+  color: #0f172a;
+
+  font-weight: 700;
+}
+
+/* Header buttons */
+
+.transactions-header button {
+  border: none;
+
+  padding: 12px 20px;
+
+  margin-left: 12px;
+
+  border-radius: 12px;
+
+  background: linear-gradient(135deg, #2563eb, #4f46e5);
+
+  color: white;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+}
+
+.transactions-header button:hover {
+  transform: translateY(-3px);
+
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.25);
+}
+
+/* Table Card */
+
+.transactions-table {
+  width: 100%;
+
+  border-collapse: separate;
+
+  border-spacing: 0;
+
+  background: white;
+
+  border-radius: 20px;
+
+  overflow: hidden;
+
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+/* Table Header */
+
+.transactions-table thead {
+  background: linear-gradient(135deg, #2563eb, #4f46e5);
+
+  color: white;
+}
+
+.transactions-table th {
+  padding: 18px;
+
+  text-align: left;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+/* Table Body */
+
+.transactions-table td {
+  padding: 16px 18px;
+  border-bottom: 1px solid #e2e8f0;
+  color: #334155;
+  font-size: 14px;
+}
+.transactions-table td.income {
+  color: #16a34a !important;
+  font-weight: 700;
+}
+
+/* Expense */
+
+.transactions-table td.expense {
+  color: #dc2626 !important;
+  font-weight: 700;
+}
+
+/* Row hover */
+
+.transactions-table tbody tr {
+  transition: 0.3s;
+}
+
+.transactions-table tbody tr:hover {
+  background: #f8fafc;
+
+  transform: scale(1.005);
+}
+
+/* Amount */
+
+.transactions-table td:nth-child(2) {
+  font-weight: 700;
+}
+
+/* Income */
+
+/* Action buttons */
+
+.transactions-table button {
+  border: none;
+
+  padding: 8px 14px;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  margin-right: 8px;
+
+  transition: 0.3s;
+}
+
+/* Edit */
+
+.transactions-table button:first-child {
+  background: #dbeafe;
+
+  color: #2563eb;
+}
+
+.transactions-table button:first-child:hover {
+  background: #2563eb;
+
+  color: white;
+}
+
+/* Delete */
+
+.transactions-table button:last-child {
+  background: #fee2e2;
+
+  color: #dc2626;
+}
+
+.transactions-table button:last-child:hover {
+  background: #dc2626;
+
+  color: white;
+}
+
+/* Empty state */
+
+.transactions-container > p {
+  background: white;
+
+  padding: 30px;
+
+  text-align: center;
+
+  border-radius: 15px;
+
+  color: #64748b;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+/* Mobile */
+
+@media (max-width: 900px) {
+  .transactions-container {
+    padding: 20px;
+  }
+
+  .transactions-header {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 20px;
+  }
+
+  .transactions-table {
+    display: block;
+
+    overflow-x: auto;
+  }
+}

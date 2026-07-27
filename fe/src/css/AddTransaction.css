@@ -1,0 +1,125 @@
+/* Page */
+
+.transaction-container {
+  min-height: calc(100vh - 100px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  background: #f8fafc;
+}
+
+/* Card */
+
+.transaction-card {
+  width: 450px;
+  background: white;
+  padding: 35px;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading */
+
+.transaction-card h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #0f172a;
+}
+
+/* Form */
+
+.transaction-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* IMPORTANT FIX */
+
+.transaction-form input,
+.transaction-form select,
+.transaction-form textarea {
+  box-sizing: border-box;
+  width: 100%;
+  height: 48px;
+
+  padding: 0 15px;
+
+  border-radius: 10px;
+
+  border: 1px solid #cbd5e1;
+
+  background: #ffffff;
+
+  font-size: 15px;
+
+  color: #334155;
+
+  outline: none;
+
+  transition: all 0.3s ease;
+}
+
+/* Text area */
+
+.transaction-form textarea {
+  height: 110px;
+
+  padding: 14px 15px;
+
+  resize: none;
+}
+
+/* Focus */
+
+.transaction-form input:focus,
+.transaction-form select:focus,
+.transaction-form textarea:focus {
+  border-color: #2563eb;
+
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* Placeholder */
+
+.transaction-form input::placeholder,
+.transaction-form textarea::placeholder {
+  color: #94a3b8;
+}
+
+/* Select */
+
+.transaction-form select {
+  cursor: pointer;
+}
+
+/* Button */
+
+.submit-btn {
+  height: 50px;
+
+  margin-top: 10px;
+
+  border: none;
+
+  border-radius: 12px;
+
+  background: linear-gradient(135deg, #2563eb, #4f46e5);
+
+  color: white;
+
+  font-size: 16px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+}

@@ -1,4 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
+import '../css/Login.css';
 import axios from 'axios';
 import { useState } from 'react';
 
@@ -56,15 +57,8 @@ const LoginPage = () => {
         'http://localhost:8080/api/auth/login',
         formData
       );
-
-      // const { token, user } = response.data;
       const { token } = response.data;
-
-      // Store token
       localStorage.setItem('token', token);
-
-      // Optional user info
-      // localStorage.setItem('user', JSON.stringify(user));
 
       navigate('/dashboard');
     } catch (error) {
