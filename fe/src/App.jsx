@@ -5,7 +5,6 @@ import RegisterPage from './pages/Register';
 import ForgotPassword from './pages/ForgotPassword';
 import Dashboard from './pages/Dashboard';
 
-import './App.css';
 import AddTransaction from './pages/AddTransaction';
 import EditTransaction from './pages/EditTransaction';
 import Categories from './pages/Categories';
