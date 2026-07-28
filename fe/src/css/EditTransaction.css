@@ -1,0 +1,167 @@
+/* =====================================
+   Page Container & Layout
+===================================== */
+
+.edit-container {
+  min-height: calc(100vh - 100px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  background: #f8fafc;
+  font-family: "Inter", sans-serif;
+}
+
+/* =====================================
+   Card Styling
+===================================== */
+
+.edit-card {
+  width: 480px;
+  background: #ffffff;
+  padding: 35px;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(15, 23, 42, 0.1);
+  border: 1px solid #e2e8f0;
+}
+
+.edit-card h2 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 25px;
+  color: #0f172a;
+  font-size: 24px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* =====================================
+   Form Controls
+===================================== */
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.edit-form label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: -10px;
+}
+
+/* Inputs, Selects & Textarea Base */
+.edit-form input,
+.edit-form select,
+.edit-form textarea {
+  box-sizing: border-box;
+  width: 100%;
+  height: 48px;
+  padding: 0 15px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  font-size: 15px;
+  color: #334155;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.edit-form select {
+  cursor: pointer;
+}
+
+/* Textarea Custom Height */
+.edit-form textarea {
+  height: 100px;
+  padding: 12px 15px;
+  resize: none;
+}
+
+/* Focus States */
+.edit-form input:focus,
+.edit-form select:focus,
+.edit-form textarea:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.edit-form input::placeholder,
+.edit-form textarea::placeholder {
+  color: #94a3b8;
+}
+
+/* Number input spinners tweak */
+.edit-form input[type="number"]::-webkit-inner-spin-button,
+.edit-form input[type="number"]::-webkit-outer-spin-button {
+  opacity: 0.5;
+}
+
+/* =====================================
+   Button Group & Actions
+===================================== */
+
+.button-group {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.button-group button {
+  flex: 1;
+  height: 48px;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Save / Update Button */
+.update-btn {
+  background: linear-gradient(135deg, #2563eb, #4f46e5);
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+}
+
+.update-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.35);
+}
+
+/* Cancel Button */
+.cancel-btn {
+  background: #f1f5f9;
+  color: #64748b;
+  border: 1px solid #cbd5e1 !important;
+}
+
+.cancel-btn:hover {
+  background: #e2e8f0;
+  color: #1e293b;
+}
+
+/* =====================================
+   Responsive Design
+===================================== */
+
+@media (max-width: 600px) {
+  .edit-container {
+    padding: 20px;
+  }
+
+  .edit-card {
+    width: 100%;
+    padding: 25px;
+  }
+
+  .button-group {
+    flex-direction: column;
+  }
+}
