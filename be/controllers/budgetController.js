@@ -29,35 +29,40 @@ const getBudgets = async (req, res) => {
     const result = [];
 
     for (const budget of budgets) {
-      const transactions = await Transaction.find({
-        userId: req.user.id,
-        category: budget.categoryId._id,
-        type: 'Expense',
-        date: {
-          $gte: new Date(budget.year, budget.month - 1, 1),
-          $lt: new Date(budget.year, budget.month, 1),
-        },
-      });
+      const categoryId = budget.categoryId ? budget.categoryId._id : null;
+      let spent = 0;
 
-      const spent = transactions.reduce(
-        (total, item) => total + Number(item.amount),
-        0
-      );
+      if (categoryId) {
+        const transactions = await Transaction.find({
+          userId: req.user.id,
+          category: categoryId,
+          type: 'Expense',
+          date: {
+            $gte: new Date(budget.year, budget.month - 1, 1),
+            $lt: new Date(budget.year, budget.month, 1),
+          },
+        });
+
+        spent = transactions.reduce(
+          (total, item) => total + Number(item.amount),
+          0
+        );
+      }
 
       result.push({
         id: budget._id,
         category: {
-          id: budget.categoryId._id,
-          name: budget.categoryId.name,
-          icon: budget.categoryId.icon,
-          color: budget.categoryId.color,
+          id: budget.categoryId?._id || null,
+          name: budget.categoryId?.name || 'Uncategorized',
+          icon: budget.categoryId?.icon || '📁',
+          color: budget.categoryId?.color || '#cbd5e1',
         },
-        budgetAmount: budget.amount,
+        budgetAmount: budget.amount || 0,
         month: budget.month,
         year: budget.year,
         spent,
-        remaining: budget.amount - spent,
-        exceeded: spent > budget.amount,
+        remaining: (budget.amount || 0) - spent,
+        exceeded: spent > (budget.amount || 0),
       });
     }
     res.json(result);

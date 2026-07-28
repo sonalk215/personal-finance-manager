@@ -1,0 +1,123 @@
+/* =====================================
+   Page Layout & Container
+===================================== */
+
+.category-form-container {
+  min-height: calc(100vh - 100px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  background: #f8fafc;
+}
+
+/* =====================================
+   Form Card
+===================================== */
+
+.category-card {
+  width: 450px;
+  background: #ffffff;
+  padding: 35px;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(15, 23, 42, 0.1);
+}
+
+.category-card h2 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 30px;
+  color: #0f172a;
+  font-size: 26px;
+  font-weight: 800;
+}
+
+/* =====================================
+   Form Fields
+===================================== */
+
+.category-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Base Input Styling */
+.category-form input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 48px;
+  padding: 0 15px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  font-size: 15px;
+  color: #334155;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+/* Focus State */
+.category-form input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* Placeholder Styling */
+.category-form input::placeholder {
+  color: #94a3b8;
+}
+
+/* Custom Styling for HTML5 Color Picker */
+.category-form input[type="color"] {
+  padding: 6px;
+  height: 48px;
+  cursor: pointer;
+}
+
+.category-form input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.category-form input[type="color"]::-webkit-color-swatch {
+  border: none;
+  border-radius: 6px;
+}
+
+/* =====================================
+   Submit Button
+===================================== */
+
+.category-form button[type="submit"] {
+  height: 50px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #2563eb, #4f46e5);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+}
+
+.category-form button[type="submit"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.35);
+}
+
+/* =====================================
+   Responsive Design
+===================================== */
+
+@media (max-width: 600px) {
+  .category-form-container {
+    padding: 20px;
+  }
+
+  .category-card {
+    width: 100%;
+    padding: 25px;
+  }
+}
