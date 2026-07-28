@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+import '../css/Categories.css';
+
 const Categories = () => {
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
@@ -45,59 +47,69 @@ const Categories = () => {
   return (
     <div className="category-container">
       <div className="category-header">
-        <h1>Categories</h1>
+        <div className="category-title">
+          <h1>📂 Categories</h1>
+          <p>Manage your expense and income categories.</p>
+        </div>
 
         <button
           className="btn btn-primary"
           onClick={() => navigate('/add-category')}
         >
-          Add Category
+          + Add Category
         </button>
       </div>
 
-      <table className="category-table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Color</th>
-            <th>Icon</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {categories.map((category) => (
-            <tr key={category._id}>
-              <td>{category.name}</td>
-
-              <td>
-                <div
-                  className="color-box"
-                  style={{ background: category.color }}
-                />
-              </td>
-
-              <td>{category.icon}</td>
-
-              <td className="actions">
-                <button
-                  className="btn btn-warning"
-                  onClick={() => navigate(`/edit-category/${category._id}`)}
-                >
-                  Edit
-                </button>
-
-                <button
-                  className="btn btn-danger"
-                  onClick={() => deleteCategory(category._id)}
-                >
-                  Delete
-                </button>
-              </td>
+      {categories.length === 0 ? (
+        <div className="category-empty">
+          <h3>No categories found</h3>
+          <p>Create your first category to organize your transactions.</p>
+        </div>
+      ) : (
+        <table className="category-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Color</th>
+              <th>Icon</th>
+              <th>Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+
+          <tbody>
+            {categories.map((category) => (
+              <tr key={category._id}>
+                <td>{category.name}</td>
+
+                <td>
+                  <div
+                    className="color-box"
+                    style={{ background: category.color }}
+                  />
+                </td>
+
+                <td>{category.icon}</td>
+
+                <td className="actions">
+                  <button
+                    className="btn btn-warning"
+                    onClick={() => navigate(`/edit-category/${category._id}`)}
+                  >
+                    Edit
+                  </button>
+
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => deleteCategory(category._id)}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 };

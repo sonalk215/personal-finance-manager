@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import '../css/AddBudget.css';
 
 const AddBudget = () => {
   const navigate = useNavigate();
@@ -55,7 +56,7 @@ const AddBudget = () => {
 
   return (
     <div className="budget-container">
-      <div className="budget-card">
+      <div className="add-budget-card">
         <h2>Add Monthly Budget</h2>
 
         <form onSubmit={submitBudget}>

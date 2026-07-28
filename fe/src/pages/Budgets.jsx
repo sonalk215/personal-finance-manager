@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+import '../css/Budgets.css';
+
 const Budgets = () => {
   const navigate = useNavigate();
   const [budgets, setBudgets] = useState([]);

@@ -41,6 +41,12 @@ const AddTransaction = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    if (name === 'category' && value === 'create-category') {
+      navigate('/add-category'); // Adjust route to '/categories' if needed
+      return;
+    }
+
     setFormData({
       ...formData,
       [name]: value,
@@ -86,6 +92,7 @@ const AddTransaction = () => {
             onChange={handleChange}
           >
             <option value="">Select Category</option>
+            <option value="create-category">Create Category</option>
             {categories.map((category) => (
               <option key={category._id} value={category._id}>
                 {category.icon} {category.name}

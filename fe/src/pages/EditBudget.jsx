@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
+import '../css/AddBudget.css'; // 👈 Uses form card styles
 
 const EditBudget = () => {
   const { id } = useParams();
@@ -18,19 +19,11 @@ const EditBudget = () => {
     const loadData = async () => {
       try {
         const token = localStorage.getItem('token');
-
-        const headers = {
-          Authorization: `Bearer ${token}`,
-        };
+        const headers = { Authorization: `Bearer ${token}` };
 
         const [categoryResponse, budgetResponse] = await Promise.all([
-          axios.get('http://localhost:8080/api/categories', {
-            headers,
-          }),
-
-          axios.get('http://localhost:8080/api/budgets', {
-            headers,
-          }),
+          axios.get('http://localhost:8080/api/categories', { headers }),
+          axios.get('http://localhost:8080/api/budgets', { headers }),
         ]);
 
         setCategories(categoryResponse.data);
@@ -38,8 +31,8 @@ const EditBudget = () => {
 
         if (budget) {
           setFormData({
-            categoryId: budget.category.id,
-            amount: budget.budgetAmount,
+            categoryId: budget.category?.id || '',
+            amount: budget.budgetAmount || '',
             month: budget.month || '',
             year: budget.year || '',
           });
@@ -65,16 +58,11 @@ const EditBudget = () => {
     try {
       const token = localStorage.getItem('token');
 
-      await axios.put(
-        `http://localhost:8080/api/budgets/${id}`,
-
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      await axios.put(`http://localhost:8080/api/budgets/${id}`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       navigate('/budgets');
     } catch (error) {
@@ -84,12 +72,12 @@ const EditBudget = () => {
 
   return (
     <div className="budget-container">
-      <div className="budget-card">
+      {/* Changed to add-budget-card to avoid styling leaks */}
+      <div className="add-budget-card">
         <h2>Edit Budget</h2>
 
         <form onSubmit={updateBudget}>
           <label>Category</label>
-
           <select
             name="categoryId"
             value={formData.categoryId}
@@ -98,9 +86,7 @@ const EditBudget = () => {
             <option value="">Select Category</option>
             {categories.map((category) => (
               <option key={category._id} value={category._id}>
-                {category.icon}
-
-                {category.name}
+                {category.icon} {category.name}
               </option>
             ))}
           </select>
@@ -124,7 +110,6 @@ const EditBudget = () => {
           />
 
           <label>Year</label>
-
           <input
             type="number"
             name="year"
@@ -132,10 +117,18 @@ const EditBudget = () => {
             onChange={handleChange}
           />
 
-          <button type="submit">Update Budget</button>
-          <button type="button" onClick={() => navigate('/budgets')}>
-            Cancel
-          </button>
+          <div className="form-actions">
+            <button type="submit" className="btn-submit">
+              Update Budget
+            </button>
+            <button
+              type="button"
+              className="btn-cancel"
+              onClick={() => navigate('/budgets')}
+            >
+              Cancel
+            </button>
+          </div>
         </form>
       </div>
     </div>
