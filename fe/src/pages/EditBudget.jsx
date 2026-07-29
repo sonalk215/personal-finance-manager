@@ -3,6 +3,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import '../css/AddBudget.css'; // 👈 Uses form card styles
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+
 const EditBudget = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -22,8 +24,8 @@ const EditBudget = () => {
         const headers = { Authorization: `Bearer ${token}` };
 
         const [categoryResponse, budgetResponse] = await Promise.all([
-          axios.get('http://localhost:8080/api/categories', { headers }),
-          axios.get('http://localhost:8080/api/budgets', { headers }),
+          axios.get(`${API_BASE_URL}/api/categories`, { headers }),
+          axios.get(`${API_BASE_URL}/api/budgets`, { headers }),
         ]);
 
         setCategories(categoryResponse.data);
@@ -58,7 +60,7 @@ const EditBudget = () => {
     try {
       const token = localStorage.getItem('token');
 
-      await axios.put(`http://localhost:8080/api/budgets/${id}`, formData, {
+      await axios.put(`${API_BASE_URL}/api/budgets/${id}`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -72,7 +74,6 @@ const EditBudget = () => {
 
   return (
     <div className="budget-container">
-      {/* Changed to add-budget-card to avoid styling leaks */}
       <div className="add-budget-card">
         <h2>Edit Budget</h2>
 

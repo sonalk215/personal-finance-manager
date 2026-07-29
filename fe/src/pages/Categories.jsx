@@ -4,6 +4,8 @@ import axios from 'axios';
 
 import '../css/Categories.css';
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+
 const Categories = () => {
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
@@ -12,14 +14,11 @@ const Categories = () => {
     const fetchCategories = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(
-          'http://localhost:8080/api/categories',
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await axios.get(`${API_BASE_URL}/api/categories`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         setCategories(response.data);
       } catch (err) {
         console.log(err);
@@ -33,7 +32,7 @@ const Categories = () => {
     try {
       const token = localStorage.getItem('token');
 
-      await axios.delete(`http://localhost:8080/api/categories/${id}`, {
+      await axios.delete(`${API_BASE_URL}/api/categories/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

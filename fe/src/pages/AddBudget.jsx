@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../css/AddBudget.css';
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+
 const AddBudget = () => {
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
@@ -24,7 +26,7 @@ const AddBudget = () => {
     e.preventDefault();
     try {
       const token = localStorage.getItem('token');
-      await axios.post('http://localhost:8080/api/budgets', formData, {
+      await axios.post(`${API_BASE_URL}/api/budgets`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -38,14 +40,11 @@ const AddBudget = () => {
     const fetchCategories = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(
-          'http://localhost:8080/api/categories',
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await axios.get(`${API_BASE_URL}/api/categories`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         setCategories(response.data);
       } catch (error) {
         console.log(error);

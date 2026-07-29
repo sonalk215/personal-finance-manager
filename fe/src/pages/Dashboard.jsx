@@ -4,6 +4,8 @@ import axios from 'axios';
 
 import '../css/Dashboard.css';
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+
 import {
   PieChart,
   Pie,
@@ -51,9 +53,8 @@ const Dashboard = () => {
         };
 
         const [userResponse, summaryResponse] = await Promise.all([
-          axios.get('http://localhost:8080/api/auth/me', { headers }),
-
-          axios.get('http://localhost:8080/api/dashboard/summary', { headers }),
+          axios.get(`${API_BASE_URL}/api/auth/me`, { headers }),
+          axios.get(`${API_BASE_URL}/api/dashboard/summary`, { headers }),
         ]);
 
         setUser(userResponse.data);
@@ -79,7 +80,6 @@ const Dashboard = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-
     navigate('/');
   };
 
@@ -163,9 +163,7 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* =====================
- CHARTS
-===================== */}
+      {/* =====================CHARTS==================== */}
 
       <div className="charts-grid">
         <div className="chart-card">
@@ -228,9 +226,7 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* =====================
- RECENT TRANSACTIONS
-===================== */}
+      {/* =====================RECENT TRANSACTIONS=================== */}
 
       <div className="recent-section">
         <h2>Recent Transactions</h2>
@@ -239,11 +235,8 @@ const Dashboard = () => {
           <thead>
             <tr>
               <th>Title</th>
-
               <th>Amount</th>
-
               <th>Category</th>
-
               <th>Type</th>
             </tr>
           </thead>

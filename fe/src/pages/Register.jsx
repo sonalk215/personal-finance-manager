@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+
 const RegisterPage = () => {
   const navigate = useNavigate();
 
@@ -63,7 +65,7 @@ const RegisterPage = () => {
 
     try {
       setLoading(true);
-      await axios.post('http://localhost:8080/api/auth/register', {
+      await axios.post(`${API_BASE_URL}/api/auth/register`, {
         name: formData.name,
         email: formData.email,
         password: formData.password,

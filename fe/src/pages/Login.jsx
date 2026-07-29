@@ -3,6 +3,10 @@ import '../css/Login.css';
 import axios from 'axios';
 import { useState } from 'react';
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+console.log('API_BASE_URL:', API_BASE_URL);
+console.log('VITE_API_URL:', import.meta.env);
+
 const LoginPage = () => {
   const navigate = useNavigate();
 
@@ -54,7 +58,7 @@ const LoginPage = () => {
       setLoading(true);
 
       const response = await axios.post(
-        'http://localhost:8080/api/auth/login',
+        `${API_BASE_URL}/api/auth/login`,
         formData
       );
       const { token } = response.data;

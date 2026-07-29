@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 
 import '../css/Budgets.css';
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+
 const Budgets = () => {
   const navigate = useNavigate();
   const [budgets, setBudgets] = useState([]);
@@ -12,7 +14,7 @@ const Budgets = () => {
     try {
       const token = localStorage.getItem('token');
 
-      const response = await axios.get('http://localhost:8080/api/budgets', {
+      const response = await axios.get(`${API_BASE_URL}/api/budgets`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -31,7 +33,7 @@ const Budgets = () => {
     try {
       const token = localStorage.getItem('token');
 
-      await axios.delete(`http://localhost:8080/api/budgets/${id}`, {
+      await axios.delete(`${API_BASE_URL}/api/budgets/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

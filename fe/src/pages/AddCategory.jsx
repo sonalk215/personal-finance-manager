@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../css/AddCategory.css';
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+
 const AddCategory = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -23,7 +25,7 @@ const AddCategory = () => {
 
     const token = localStorage.getItem('token');
 
-    await axios.post('http://localhost:8080/api/categories', formData, {
+    await axios.post(`${API_BASE_URL}/api/categories`, formData, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

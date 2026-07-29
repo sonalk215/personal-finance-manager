@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 
 import '../css/AddTransaction.css';
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+
 const AddTransaction = () => {
   const navigate = useNavigate();
 
@@ -21,15 +23,11 @@ const AddTransaction = () => {
     const fetchCategories = async () => {
       try {
         const token = localStorage.getItem('token');
-
-        const response = await axios.get(
-          'http://localhost:8080/api/categories',
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await axios.get(`${API_BASE_URL}/api/categories`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
         setCategories(response.data);
       } catch (error) {
@@ -58,7 +56,7 @@ const AddTransaction = () => {
 
     const token = localStorage.getItem('token');
 
-    await axios.post('http://localhost:8080/api/transactions', formData, {
+    await axios.post(`${API_BASE_URL}/api/transactions`, formData, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

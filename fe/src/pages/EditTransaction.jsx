@@ -4,6 +4,8 @@ import axios from 'axios';
 
 import '../css/EditTransaction.css';
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+
 const EditTransaction = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -35,8 +37,8 @@ const EditTransaction = () => {
         };
 
         const [categoryResponse, transactionResponse] = await Promise.all([
-          axios.get('http://localhost:8080/api/categories', { headers }),
-          axios.get('http://localhost:8080/api/transactions', { headers }),
+          axios.get(`${API_BASE_URL}/api/categories`, { headers }),
+          axios.get(`${API_BASE_URL}/api/transactions`, { headers }),
         ]);
 
         setCategories(categoryResponse.data);
@@ -48,7 +50,6 @@ const EditTransaction = () => {
           setFormData({
             title: transaction.title,
             amount: transaction.amount,
-            //category: transaction.category._id || transaction.category,
             category:
               typeof transaction.category === 'object'
                 ? transaction.category._id
@@ -68,7 +69,7 @@ const EditTransaction = () => {
   const updateTransaction = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem('token');
-    await axios.put(`http://localhost:8080/api/transactions/${id}`, formData, {
+    await axios.put(`${API_BASE_URL}/api/transactions/${id}`, formData, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

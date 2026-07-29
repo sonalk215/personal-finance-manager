@@ -4,6 +4,8 @@ import axios from 'axios';
 
 import '../css/Transactions.css';
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+
 const Transactions = () => {
   const navigate = useNavigate();
   const [transactions, setTransactions] = useState([]);
@@ -14,7 +16,7 @@ const Transactions = () => {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:8080/api/transactions/${id}`, {
+      await axios.delete(`${API_BASE_URL}/api/transactions/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -31,14 +33,11 @@ const Transactions = () => {
     try {
       const token = localStorage.getItem('token');
 
-      const response = await axios.get(
-        'http://localhost:8080/api/transactions',
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await axios.get(`${API_BASE_URL}/api/transactions`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       setTransactions(response.data);
     } catch (err) {

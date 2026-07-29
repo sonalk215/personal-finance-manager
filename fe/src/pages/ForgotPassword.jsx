@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
@@ -36,7 +38,7 @@ const ForgotPassword = () => {
     try {
       setLoading(true);
       const response = await axios.post(
-        'http://localhost:8080/api/auth/forgot-password',
+        `${API_BASE_URL}/api/auth/forgot-password`,
         { email }
       );
       console.log(response);
